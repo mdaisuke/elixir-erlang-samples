@@ -6,10 +6,12 @@ defmodule Blog.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Blog.Worker.start_link(arg)
       # {Blog.Worker, arg},
+      worker(Blog.Repo, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
